@@ -56,5 +56,5 @@ if file is not None:
     if st.button("Predict"):
 
         caption = predict_caption(model, tokenizer, max_length, feature)
-
-        st.write(caption)
+        
+        st.subheader(' '.join(caption.split()[1:-1]))
