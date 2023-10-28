@@ -5,7 +5,6 @@ import os
 import random
 import imageio.v3 as iio
 from PIL import Image
-from io import BytesIO
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 from tensorflow.keras.models import load_model
@@ -17,7 +16,7 @@ model.compile(loss='binary_crossentropy', optimizer='adam')
 tokenizer = pickle.load(open('models/tokenizer.pickle','rb'))
 max_length = 34
 
-st.title("CaptionCraft")
+st.title("CaptionVerse")
 
 file = st.file_uploader("Upload a file", type=["jpg", "png", "jpeg"])
 
