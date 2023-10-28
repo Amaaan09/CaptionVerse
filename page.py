@@ -1,6 +1,8 @@
 import streamlit as st
 import numpy as np
 import pickle
+import os
+import random
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 from tensorflow.keras.models import load_model
@@ -57,4 +59,18 @@ if file is not None:
 
         caption = predict_caption(model, tokenizer, max_length, feature)
         
+        st.subheader(' '.join(caption.split()[1:-1]))
+
+else:
+    if st.button("Use Sample Image"):
+        sample = random.choice(os.listdir('examples'))
+        sample_file = open(f"examples/{sample}", "rb")
+        st.image(file, use_column_width=True)
+        img = load_img(file,target_size=(299,299))
+        img = img_to_array(img)
+        img = img/255.
+        img = np.expand_dims(img,axis=0)
+        feature = fe.predict(img, verbose=0)
+    
+        caption = predict_caption(model, tokenizer, max_length, feature)
         st.subheader(' '.join(caption.split()[1:-1]))
