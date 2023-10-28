@@ -55,7 +55,7 @@ if file is not None:
     img = img_to_array(img)
     img = img/255.
     img = np.expand_dims(img,axis=0)
-    feature = fe(img, verbose=0)
+    feature = fe(img)
 
     if st.button("Predict"):
 
@@ -76,7 +76,7 @@ else:
         img = img_to_array(img)
         img = img/255.
         img = np.expand_dims(img,axis=0)
-        feature = fe.predict(img, verbose=0)
+        feature = fe(img)
 
         caption = predict_caption(model, tokenizer, max_length, feature)
         st.subheader(' '.join(caption.split()[1:-1]))
